@@ -1,0 +1,100 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ApoEx Beer Service</title>
+</head>
+<body>
+  <div>
+    <h3>ApoEx Beer Service</h3>
+    <div>
+      <input type="text" name="search-input" placeholder="Looking for a beer?"></input>
+    </div>
+    <div>
+      <a href="#" name="page-down">&ltPrev</a>
+      <span name="page-counter">1</span>
+      <a href="#" name="page-up">Next&gt</a>
+    </div>
+    <div name="beer-list"></div>
+  </div>
+</body>
+<script>
+  document.addEventListener('DOMContentLoaded', (event) => {
+    const searchInput = document.getElementsByName('search-input')[0]
+    const pageCounter = document.getElementsByName('page-counter')[0]
+    const pageDown = document.getElementsByName('page-down')[0]
+    const pageUp = document.getElementsByName('page-up')[0]
+
+    const addBeer = beer => {
+      const div = document.createElement('div')
+      const title = document.createElement('h3')
+      const description = document.createElement('p')
+      const food = document.createElement('p')
+
+      title.innerHTML = `${beer.name} ${beer.abv}%`
+      description.innerHTML = beer.description
+      food.innerHTML = `Goes well with ${beer.food_pairing.join(', ')}` 
+      
+      title.addEventListener('click', (event) => {
+        event.preventDefault()
+        if (div.children.length === 1) {
+          div.appendChild(description)
+          div.appendChild(food)
+        } else {
+          div.removeChild(description)
+          div.removeChild(food)
+        }
+      })
+
+      div.appendChild(title)
+      
+      return div
+    };
+
+    const addBeers = beers => {
+      const beerList = document.getElementsByName('beer-list')[0]
+      beerList.innerHTML = ''
+
+      if (!beers.length) {
+        const noResults = document.createElement('p')
+        noResults.innerHTML = 'No results'
+         beerList.appendChild(noResults)
+        return
+      }
+
+      beers.forEach(beer => {
+        const beerInfo = addBeer(beer)
+        beerList.appendChild(beerInfo)
+      })
+    }
+  
+    const getBeers = async() => {
+      const resource = new URL('http://0.0.0.0:3000/api/v1/beer/search')
+      resource.searchParams.append('beer_name', searchInput.value)
+      resource.searchParams.append('page', pageCounter.innerHTML)
+      resource.searchParams.append('per_page', 3)
+      const reqOpts = { mode: 'cors', cache: 'no-cache' }
+      const response = await fetch(resource, reqOpts)
+      const beers = await response.json()
+      addBeers(beers);
+    }
+  
+    searchInput.addEventListener('change', (event) => getBeers())
+    
+    pageDown.addEventListener('click', (event) => {
+      event.preventDefault()
+      if (+pageCounter.innerHTML > 1) {
+        pageCounter.innerHTML = +pageCounter.innerHTML - 1
+      }
+      getBeers()
+    })
+
+    pageUp.addEventListener('click', (event) => {
+      event.preventDefault()
+      pageCounter.innerHTML = +pageCounter.innerHTML + 1
+      getBeers()
+    })
+  })
+</script>
+</html>

@@ -1,0 +1,24 @@
+{
+  "name": "punk-api",
+  "version": "0.0.1",
+  "description": "Web dev aptitude test",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive --exit ./test/"
+  },
+  "author": "nazim.huseynov@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.25.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.6",
+    "mocha": "^9.2.0",
+    "nock": "^13.2.4",
+    "sinon": "^13.0.1",
+    "supertest": "^6.2.2"
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Buzz",
+    "description": "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+    "abv": 4.5,
+    "food_pairing": [
+      "Spicy chicken tikka masala",
+      "Grilled chicken quesadilla",
+      "Caramel toffee cake"
+    ]
+  },
+  {
+
+    "name": "Trashy Blonde",
+    "description": "A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.",
+    "abv": 4.1,
+    "food_pairing": [
+      "Fresh crab with lemon",
+      "Garlic butter dipping sauce",
+      "Goats cheese salad",
+      "Creamy lemon bar doused in powdered sugar"
+    ]
+  },
+  {
+    "name": "Berliner Weisse With Yuzu - B-Sides",
+    "description": "Japanese citrus fruit intensifies the sour nature of this German classic.",
+    "abv": 4.2,
+    "food_pairing": [
+      "Smoked chicken wings",
+      "Miso ramen",
+      "Yuzu cheesecake"
+    ]
+  }
+]
+
