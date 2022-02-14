@@ -9,7 +9,7 @@ Build the docker image:
 `docker build . --network=host -t apoex_api:latest`
 
 Run the image:
-`docker run -d --rm -p 3000:3000 punk_api`
+`docker run -d --rm -p 3000:3000 apoex_api`
 
 Test the api:
 `curl http://localhost:3000/_ping`
